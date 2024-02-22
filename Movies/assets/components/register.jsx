@@ -8,7 +8,7 @@ var height=Dimensions.get("screen");
 export default function Register({navigation}) {
     return (
         <View  style={{ height: "100%", width: "100%", backgroundColor: "#1F2123" }}>
-            <View style={{ marginTop: 50, display: "flex", flexDirection: 'row', }}>
+            <View style={{ marginTop: 40, display: "flex", flexDirection: 'row', }}>
                 <MaterialCommunityIcons onPress={()=>navigation.navigate("Welcome")} name='arrow-left' style={{ marginHorizontal: 20 }} size={23} color={"#FDD130"} />
                 <Text style={{ fontSize: 20, fontWeight: "600", color: "white" }}>Register</Text>
             </View>

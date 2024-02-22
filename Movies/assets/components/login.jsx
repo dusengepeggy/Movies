@@ -34,7 +34,7 @@ export default function Login({navigation}) {
             </View>
 
             <View style={{ width: "90%", alignSelf: "center" }}>
-                <Pressable style={{ width: "100%", backgroundColor: "#FDD130", margin: 5, paddingVertical: 6, borderRadius: 4, alignSelf: "center" }}>
+                <Pressable onPress={()=>navigation.navigate("Home")} style={{ width: "100%", backgroundColor: "#FDD130", margin: 5, paddingVertical: 6, borderRadius: 4, alignSelf: "center" }}>
                     <Text style={{ fontSize: 16, fontWeight: "300", padding: 4, alignSelf: "center" }}>Get started </Text>
                 </Pressable>
                 <Text style={{width:"100%" ,textAlign:"right",color:"#FDD130",fontWeight:"200",marginTop:5}}>Forgot password ? </Text>

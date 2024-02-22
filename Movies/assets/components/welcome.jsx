@@ -15,7 +15,7 @@ export default function Welcome({navigation}) {
                 <Text style={{ color: "white", fontSize: 25, marginVertical: 15, fontWeight: "600", width: "60%", textAlign: "center" }}>Welcome to Muvi</Text>
                 <Text style={{ fontWeight: "300", color: "lightgray", textAlign: "center", width: "70%" }}>Free movie streaming ,all your needs everytime and everywhere</Text>
                 <View style={{width:"100%",marginTop:100}}>
-                <Pressable style={{ width: "90%", backgroundColor: "#FDD130", margin:10,paddingVertical: 8, borderRadius: 4,  alignSelf: "center" }}>
+                <Pressable onPress={()=>navigation.navigate("Home")} style={{ width: "90%", backgroundColor: "#FDD130", margin:10,paddingVertical: 8, borderRadius: 4,  alignSelf: "center" }}>
                     <Text style={{ fontSize: 16, fontWeight: "300", alignSelf: "center" }}>watch Movie</Text>
                 </Pressable>
                 <Pressable onPress={()=>navigation.navigate("Register")} style={{ width: "90%", paddingVertical: 8, borderRadius: 4, alignSelf: "center" }}>
