@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, Image, ActivityIndicator, Pressable, View, SafeAreaView } from 'react-native';
 const images = require("../pics/muvi.png");
 const welcome = require("../pics/getstarted.png")
-export default function Welcome() {
+export default function Welcome({navigation}) {
     return (
         <View>
             <View style={{ backgroundColor: "#1F2123" }}>
@@ -18,7 +18,7 @@ export default function Welcome() {
                 <Pressable style={{ width: "90%", backgroundColor: "#FDD130", margin:10,paddingVertical: 8, borderRadius: 4,  alignSelf: "center" }}>
                     <Text style={{ fontSize: 16, fontWeight: "300", alignSelf: "center" }}>watch Movie</Text>
                 </Pressable>
-                <Pressable style={{ width: "90%", paddingVertical: 8, borderRadius: 4, alignSelf: "center" }}>
+                <Pressable onPress={()=>navigation.navigate("Register")} style={{ width: "90%", paddingVertical: 8, borderRadius: 4, alignSelf: "center" }}>
                     <Text style={{ fontSize: 16, fontWeight: 200, color: "white", alignSelf: "center" }}>Sign In</Text>
                 </Pressable>
                 </View>

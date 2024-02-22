@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text,Image,Pressable, ActivityIndicator,View ,ScrollView,ImageBackground,SafeAreaView} from 'react-native';
 const name=require("../pics/joker2.jpg")
-export default function GetStarted (){
+export default function GetStarted ({navigation}){
     return(
         
         <View  style={{width:"100%",height:"100%" }}>
@@ -15,7 +15,7 @@ export default function GetStarted (){
                 <Text style={{color:"white",marginVertical:20,fontSize:16,letterSpacing:1,fontWeight:"300",width:"90%"}}>Browse through our collection and discover hundreds if movies and series that you'll love</Text>
 
                 </View>
-                <Pressable style={{width:"90%",position:"absolute",backgroundColor:"#FDD130",paddingVertical:8,borderRadius:4, bottom:10,alignSelf:"center",zIndex:100}}>
+                <Pressable onPress={()=>navigation.navigate('Welcome')} style={{width:"90%",position:"absolute",backgroundColor:"#FDD130",paddingVertical:8,borderRadius:4, bottom:10,alignSelf:"center",zIndex:100}}>
                         <Text style={{fontSize:18,alignSelf:"center"}}>Get started</Text>
                 </Pressable>
 

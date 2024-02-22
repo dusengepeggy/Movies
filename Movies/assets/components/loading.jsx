@@ -1,7 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
+import { useEffect } from 'react';
 import { StyleSheet, Text,Image, ActivityIndicator,View ,SafeAreaView} from 'react-native';
 const images = require("../pics/muvi.png"); 
-export default function Loading (){
+export default function Loading ({navigation}){
+
+    useEffect(()=>{
+        setTimeout(()=>{
+            navigation.navigate("GetStarted")
+        },3000);
+    })
      return(
         
         <View style={styles.container}>
