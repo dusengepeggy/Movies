@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, Image, ActivityIndicator, Pressable, View, SafeAreaView } from 'react-native';
-const images = require("../pics/muvi.png");
-const welcome = require("../pics/getstarted.png")
+const images = require ("../pics/muvi.png");
+const welcome = require ("../pics/getstarted.png")
 export default function Welcome({navigation}) {
     return (
         <View>
