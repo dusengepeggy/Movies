@@ -6,7 +6,7 @@ import { StyleSheet, Text, Image, ScrollView,ActivityIndicator, Pressable, View,
 function Card2 ({img,rating}){
     return(
         <View  >
-            <ImageBackground source={{uri:img}} style={{width:210,height:150,marginRight:20}} resizeMode='stretch' borderRadius={10}>
+            <ImageBackground source={{uri:img}} style={{width:210,height:270,marginRight:20}} resizeMode='stretch' borderRadius={10}>
            <View style={{padding:6,margin:4,backgroundColor:"#FDD130",borderRadius:5,alignSelf:"flex-end",marginHorizontal:6,marginVertical:2}}><Text  style={{ textAlign:"center"}} >{rating}</Text></View>
             </ImageBackground>
         </View>
@@ -26,17 +26,7 @@ export default MovieLine = ({title,dbName}) => {
   
   fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=33c21faa847d1898c3509dfd1527638f', options)
     .then(response => response.json())
-    .then(response =>{
-        response.results.map((item)=>{
-           setData(response.results)
-            // Data.push({
-            //     img:`https://image.tmdb.org/t/p/w500${item.poster_path}`,
-            //     rating:item.vote_average
-            // })
-            
-        })
-        
-       })
+    .then(response =>setData(response.results))  
     .catch(err => console.error(err));
 
       

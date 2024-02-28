@@ -44,14 +44,14 @@ export default function Home({ navigation }) {
 
 
             </View>
-            <View style={{ backgroundColor:"#1F2123", width:"100%",paddingHorizontal:25,height:50,bottom:0,position:"absolute" ,display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}>
+            {/* <View style={{ backgroundColor:"#1F2123", width:"100%",paddingHorizontal:25,height:50,bottom:0,position:"absolute" ,display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}>
                 
                 <Icon name='home' color={'lightgray'} size={25} style={{fontWeight:"100"}} />
                 <MaterialCommunityIcons name='magnify'  color={'lightgray'}  size={30}/>
                 <Icon name='folder'  color={'lightgray'}  size={25} />
                 <AntDesign name='appstore-o'  color={'lightgray'} size={25}/>
 
-            </View>
+            </View> */}
 
 
 
