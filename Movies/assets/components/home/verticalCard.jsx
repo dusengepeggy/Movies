@@ -23,7 +23,7 @@ export default VerticalCard = ({title}) => {
         }
       };
     
-      fetch('https://api.themoviedb.org/3/movie/upcoming?api_key=33c21faa847d1898c3509dfd1527638f', options)
+      fetch('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1', options)
         .then(response => response.json())
         .then(response => setData2(response.results))
         .catch(err => console.error(err.message));

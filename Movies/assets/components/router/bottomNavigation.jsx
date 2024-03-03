@@ -14,29 +14,27 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 var Tab=createBottomTabNavigator()
 export default function NavBar (){
 
-    return(
-        <>
-            <Tab.Navigator 
-                screenOptions={{
-                    tabBarShowLabel:false,
-                    tabBarActiveTintColor:"yellow",
-                    tabBarInactiveTintColor:"lightgray",
-                    tabBarStyle: {
-                        backgroundColor: "#1F2123",
-                        borderBlockColor:"transparent",
+	return(
+		<>
+			<Tab.Navigator 
+				screenOptions={{
+					tabBarShowLabel:false,
+					tabBarActiveTintColor:"yellow",
+					tabBarInactiveTintColor:"lightgray",
+					tabBarStyle: {
+						backgroundColor: "#1F2123",
+						borderBlockColor:"transparent",
 
-                    },
-                   tabBarIconStyle:{
-                    color:"white"
-                   }
-                }}
-             
-            >
-                <Tab.Screen name="Home1" component={Home} options={{headerShown:false,tabBarIcon:({focused}) => <Icon name={'home'} color={focused?"orange":'lightgray'} size={25} style={{fontWeight:"100"}}  /> }}  />
-                <Tab.Screen name="Search" component={Search} options={{headerShown:false,tabBarIcon:({focused})=><MaterialCommunityIcons name='magnify' color={focused?"orange":'lightgray'} size={30}/>}}/>
-                <Tab.Screen name="List" component={List} options={{headerShown:false,tabBarIcon:({focused})=> <Icon name='folder'  color={focused?"orange":'lightgray'}  size={25} />}}/>
-                <Tab.Screen name="Profile" component={Profile} options={{headerShown:false,tabBarIcon:({focused})=><AntDesign name='appstore-o' color={focused?"orange":'lightgray'} size={25}/>}} />
-            </Tab.Navigator> 
-        </>
-    )
+					},
+		   
+				}}
+			 
+			>
+				<Tab.Screen name="Home1" component={Home} options={{headerShown:false,tabBarIcon:({focused}) => <Icon name={'home'} color={focused?"orange":'lightgray'} size={25} style={{fontWeight:"100"}}  /> }}  />
+				<Tab.Screen name="Search" component={Search} options={{headerShown:false,tabBarIcon:({focused})=><MaterialCommunityIcons name='magnify' color={focused?"orange":'lightgray'} size={30}/>}}/>
+				<Tab.Screen name="List" component={List} options={{headerShown:false,tabBarIcon:({focused})=> <Icon name='folder'  color={focused?"orange":'lightgray'}  size={25} />}}/>
+				<Tab.Screen name="Profile" component={Profile} options={{headerShown:false,tabBarIcon:({focused})=><AntDesign name='appstore-o' color={focused?"orange":'lightgray'} size={25}/>}} />
+			</Tab.Navigator> 
+		</>
+	)
 } 

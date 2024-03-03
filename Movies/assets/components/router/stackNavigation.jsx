@@ -11,10 +11,12 @@ import GetStarted from '../getStarted';
 import Loading from "../loading";
 import Home from '../home';
 import NavBar from './bottomNavigation';
+import Detail from '../details';
 
 
 var Tab = createBottomTabNavigator()
 export default function TopBar() {
+  
   return (
     <>
       <StatusBar style="light" />
@@ -25,6 +27,7 @@ export default function TopBar() {
         <navigate.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
         <navigate.Screen name="Home" component={NavBar} options={{ headerShown: false }} />
         <navigate.Screen name="GetStarted" component={GetStarted} options={{ headerShown: false }} />
+        <navigate.Screen name="Detail" component={Detail} options={{headerShown:false}}/>
       </navigate.Navigator>
 
 
