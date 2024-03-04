@@ -1,18 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text, Image, ScrollView,ActivityIndicator, Pressable, View, SafeAreaView, ImageBackground } from 'react-native';
+import { StyleSheet, Text, Image, ScrollView,ActivityIndicator, Pressable, View, SafeAreaView, ImageBackground, TouchableOpacity } from 'react-native';
 
 
 function Card2 ({img,rating}){
     return(
-        <View  >
+        <Pressable >
             <ImageBackground source={{uri:img}} resizeMode='stretch' style={{width:"100%",height:350,marginBottom:20,alignSelf:"center"}} borderRadius={10}>
            <View style={{padding:5,backgroundColor:"#FDD130",borderRadius:5,alignSelf:"flex-end",marginHorizontal:6,marginVertical:2}}><Text  style={{ textAlign:"center"}} >{rating}</Text></View>
             </ImageBackground>
-        </View>
+        </Pressable>
     )
 }
-export default VerticalCard = ({title}) => {
+export default VerticalCard = ({title,nav}) => {
 
     var [Data2,setData2]=useState([])
     const options = {
@@ -39,7 +39,9 @@ export default VerticalCard = ({title}) => {
             {
                 Data2.slice(10,14).map((item, index) => {
                     return (
-                        <Card2 key={index} rating={item.vote_average} img={`https://image.tmdb.org/t/p/w500${item.poster_path}`} />
+                        <TouchableOpacity onPress={()=>nav.navigate('Detail',{movieId:item.id})} >
+                            <Card2  key={index} rating={item.vote_average} img={`https://image.tmdb.org/t/p/w500${item.poster_path}`} />
+                        </TouchableOpacity>
                     )
                 })
             }

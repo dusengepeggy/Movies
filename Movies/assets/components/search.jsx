@@ -3,7 +3,7 @@ import { StyleSheet, Text, Image, ActivityIndicator, Pressable, View, SafeAreaVi
 import { TextInput } from 'react-native-paper';
 const images = require("../pics/muvi.png");
 const search = require("../pics/searchpic.png");
-import VideoPlayer from '   @coorpacademy/react-native-video-controls';
+//  
 
 import menu1 from './home/menu1';
 import Menu1 from './home/menu1';
@@ -93,7 +93,7 @@ export default function Search({navigation}) {
                                         return(
                                             
                                            
-                                            <Text style={{marginRight:10,color:"white",fontSize:14}}>{genre.name}</Text>
+                                            <Text key={index} style={{marginRight:10,color:"white",fontSize:14}}>{genre.name}</Text>
                                             
                                         )
                                         

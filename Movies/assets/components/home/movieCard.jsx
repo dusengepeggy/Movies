@@ -5,11 +5,12 @@ import { StyleSheet, Text, Image, ScrollView,ActivityIndicator, Pressable, View,
 
 function Card2 ({img,rating}){
     return(
-        <View  >
+
+        <Pressable>
             <ImageBackground source={{uri:img}} style={{width:210,height:270,marginRight:20}} resizeMode='stretch' borderRadius={10}>
            <View style={{padding:6,margin:4,backgroundColor:"#FDD130",borderRadius:5,alignSelf:"flex-end",marginHorizontal:6,marginVertical:2}}><Text  style={{ textAlign:"center"}} >{rating}</Text></View>
             </ImageBackground>
-        </View>
+        </Pressable>
     )
 }
 export default MovieLine = ({title,dbName}) => {
@@ -47,6 +48,10 @@ export default MovieLine = ({title,dbName}) => {
         else if(title=="Cartoon"){
             var toDisplay=[];
             toDisplay=Data1.slice(0,5);
+        }
+        else{
+            var toDisplay=dbName;
+            
         }
 
         

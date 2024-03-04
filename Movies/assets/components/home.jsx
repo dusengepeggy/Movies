@@ -38,7 +38,7 @@ export default function Home({ navigation }) {
                     <View style={{ height: 20 }}></View>
                     <MovieLine title={"Cartoon"} />
                     <View style={{ height: 20 }}></View>
-                    <VerticalCard title={"New"} />
+                    <VerticalCard title={"New"}nav={navigation}  />
                 </ScrollView>
 
 
