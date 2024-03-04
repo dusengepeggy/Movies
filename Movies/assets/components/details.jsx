@@ -6,7 +6,7 @@ import { StyleSheet, Text, Image, ActivityIndicator, Pressable, View, SafeAreaVi
 import { useEffect, useState } from 'react';
 // const images = require("../pics/muvi.png");
 const welcome = require("../pics/getstarted.png");
-import MovieLine from './home/movieCard'
+import Card2 from './home/movieCard'
 export default function Detail({ navigation }) {
     const [video, setvideo] = useState([])
     const result = useRoute();
@@ -15,7 +15,7 @@ export default function Detail({ navigation }) {
     const [isPlaying, setIsPlaying] = useState(false)
 
 
-    const { movieId } = result.params
+    var { movieId } = result.params
     console.log(movieId);
 
     const handleSearch = () => {
@@ -70,16 +70,16 @@ export default function Detail({ navigation }) {
                 {
                     isPlaying ? (
                         <View style={{ paddingTop: 20 }}>
-                            <MaterialCommunityIcons style={{margin:10}} onPress={() => navigation.navigate("Home")} name='arrow-left' size={25} color={"#FDD130"} />
+                            <MaterialCommunityIcons style={{ margin: 10 }} onPress={() => navigation.navigate("Home")} name='arrow-left' size={25} color={"#FDD130"} />
                             <YoutubePlayer
                                 height={200}
-                                style={{position:'absolute  '}}
+                                style={{ position: 'absolute  ' }}
                                 videoId={video}
 
                             />
                         </View>
                     ) : (
-                        <ImageBackground resizeMode='stretch' style={{ width: "100%", paddingTop: 20, height: 450 }} source={{ uri: `https://image.tmdb.org/t/p/w500${details.poster_path}` }}>
+                        <ImageBackground resizeMode='stretch' style={{ width: "100%", paddingTop: 20, height: 400 }} source={{ uri: `https://image.tmdb.org/t/p/w500${details.poster_path}` }}>
                             <MaterialCommunityIcons onPress={() => navigation.navigate("Home")} name='arrow-left' size={25} color={"#FDD130"} />
                         </ImageBackground>)
                 }
@@ -87,7 +87,7 @@ export default function Detail({ navigation }) {
 
 
 
-                <View style={{ width: "90%", alignSelf: 'center',marginTop:20 }}>
+                <View style={{ width: "90%", alignSelf: 'center', marginTop: 20 }}>
                     <View>
                         <Text style={{ color: "white", marginBottom: 15, fontWeight: "600", fontSize: 20 }}>{details.title}</Text>
                         <Text style={{ color: "lightgray", fontWeight: 300, marginBottom: 10 }}>{details.overview}</Text>
@@ -98,7 +98,32 @@ export default function Detail({ navigation }) {
                     </View>
 
                     {/* <Video source={{ uri: `https://www.youtube.com/watch?v=${video.key}` }} controls={true} resizeMode="contain" style={{ width: 500, height: 600 }} /> */}
-                    <MovieLine dbName={recomendation} title={'You may also like'} />
+                    <View style={{ display: "flex", width: "100%", flexDirection: "row", justifyContent: "space-between", paddingVertical: 10 ,alignItems:'center'}}>
+                        <Text style={{ color: "white", fontSize: 20 }}>You may also like</Text>
+                        <Text style={{ color: "gray" }}>View more</Text>
+                    </View>
+
+                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} ga>
+                        {
+
+                            recomendation.map((item, index) => {
+                                return (
+                                    <TouchableOpacity key={index} onPress={() =>{
+                                        movieId=item.id;
+                                        handleSearch();
+                                        setIsPlaying(false)
+                                    }} >
+                                        <Card2 key={index} id={item.id} rating={item.vote_average} img={`https://image.tmdb.org/t/p/w500${item.poster_path}`} />
+                                    </TouchableOpacity>
+                                )
+                            })
+
+
+
+
+                        }
+
+                    </ScrollView>
                 </View>
             </ScrollView>
 

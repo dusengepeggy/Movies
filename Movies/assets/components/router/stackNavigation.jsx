@@ -12,7 +12,8 @@ import Loading from "../loading";
 import Home from '../home';
 import NavBar from './bottomNavigation';
 import Detail from '../details';
-
+import More from '../more';
+import Menu1 from '../home/menu1';
 
 var Tab = createBottomTabNavigator()
 export default function TopBar() {
@@ -28,6 +29,8 @@ export default function TopBar() {
         <navigate.Screen name="Home" component={NavBar} options={{ headerShown: false }} />
         <navigate.Screen name="GetStarted" component={GetStarted} options={{ headerShown: false }} />
         <navigate.Screen name="Detail" component={Detail} options={{headerShown:false}}/>
+        <navigate.Screen name="More" component={More} options={{headerShown:false}}/>
+        <navigate.Screen name="Menu1" component={Menu1} options={{headerShown:false}}/>
       </navigate.Navigator>
 
 

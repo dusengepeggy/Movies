@@ -65,7 +65,7 @@ export default function Search({navigation}) {
                     onChangeText={handleSearch}
                    
                 />
-                <Menu1 />
+                <Menu1 navigation={navigation}/>
             </View>
             {!isSearchInitiated?(
                 <View  style={{ backgroundColor: "#26282C", display: "flex", alignItems: "center", width: "100%", height: "65%", justifyContent: "center" }}>
