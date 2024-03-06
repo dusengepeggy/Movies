@@ -1,6 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, Image, ActivityIndicator, Pressable, View, SafeAreaView, ScrollView,TouchableOpacity } from 'react-native';
-import NavBar from './home/bottomBar';
 import logo from '../pics/muvi.png';
 import menu2 from './home/menu2';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
@@ -10,7 +9,7 @@ import Menu2 from './home/menu2';
 import Menu1 from './home/menu1';
 import Card2 from "./home/movieCard"
 import Card3 from './home/verticalCard';
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 export default function Home({ navigation }) {
     const [Data, setData] = useState([]);
     const [Data1, setData1] = useState([])
@@ -22,8 +21,8 @@ export default function Home({ navigation }) {
             Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzM2MyMWZhYTg0N2QxODk4YzM1MDlkZmQxNTI3NjM4ZiIsInN1YiI6IjY1ZDg3MzNhMTQ5NTY1MDE2MmY1OGQ5NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-yx7u3Y174Gr1eXSUvhFMNf3eWr60Ttg1fxmMAoxDHI'
         }
     };
-
-    fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', options)
+    const handleFetch=()=>{
+        fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', options)
         .then(respons => respons.json())
         .then(respons => setData(respons.results))
         .catch(err => console.error(err));
@@ -40,6 +39,14 @@ export default function Home({ navigation }) {
         .then(response => setData2(response.results))
         .catch(err => console.error(err.message));
 
+
+    }
+
+    useEffect(()=>{
+        handleFetch()
+    },[])
+
+    
 
     return (
 

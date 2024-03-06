@@ -21,7 +21,7 @@ export default function TopBar() {
   return (
     <>
       <StatusBar style="light" />
-      <navigate.Navigator initialRouteName='Loading' >
+      <navigate.Navigator initialRouteName='GetStarted' >
         <navigate.Screen name='Loading' component={Loading} options={{ headerShown: false }} />
         <navigate.Screen name="Login" component={Login} options={{ headerShown: false }} />
         <navigate.Screen name="Register" component={Register} options={{ headerShown: false }} />

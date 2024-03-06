@@ -2,10 +2,79 @@ import { StyleSheet, Text, Image, Pressable, Dimensions,ActivityIndicator, View,
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
 import { TextInput } from "react-native-paper"
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 var logo = require("../pics/muvi.png")
 var width=Dimensions.get("screen");
 var height=Dimensions.get("screen");
+import { useState ,useEffect} from 'react';
 export default function Register({navigation}) {
+    const [form, setForm] = useState({
+        email: '',
+        password: '',
+        password2: '',
+      });
+    
+      const [errors, setErrors] = useState({});
+    const validateForm = () => {
+        let isValid = true;
+        let errors = {};
+      
+        // Email validation
+        if (!form.email) {
+          isValid = false;
+          errors.email = 'Email is required';
+        } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+          isValid = false;
+          errors.email = 'Email is invalid';
+        }
+      
+        // Password validation
+        if (!form.password) {
+          isValid = false;
+          errors.password = 'Password is required';
+        } else if (form.password.length < 8) {
+          isValid = false;
+          errors.password = 'Password must be at least 8 characters';
+        }
+      
+        // Re-enter validation
+        if (!form.password2) {
+          isValid = false;
+          errors.password2 = 're-enter password';
+        } else if (form.password!=form.password2) {
+          isValid = false;
+          errors.password2 = 'Passwords must match';
+        }
+      
+        setErrors(errors);
+        return isValid;
+      };
+      const handleSubmit =async () => {
+        if (validateForm()) {
+          // Form is valid
+          console.log('Form data:', form);
+          const {email,password,password2}=form
+          const toSave={
+            email:email,
+            password:password
+          }
+          await AsyncStorage.setItem('credential',JSON.stringify(toSave))
+         
+
+          navigation.navigate('Login')
+          setForm({
+            email: '',
+            password: '',
+            password2: '',
+
+          })
+
+       
+        }
+      };
+    
+
     return (
         <View  style={{ height: "100%", width: "100%", backgroundColor: "#1F2123" }}>
             <View style={{ marginTop: 40, display: "flex", flexDirection: 'row', }}>
@@ -19,28 +88,39 @@ export default function Register({navigation}) {
             <View style={{ width: "90%", display: 'flex', marginVertical: 20, alignItems: "center", alignSelf: "center" }}>
                 <TextInput style={{ width: "100%", backgroundColor: "transparent" }}
                     label={"Email address"}
+                    onChangeText={(text) => setForm({ ...form, email: text })}
                     textColor='white'
+                    value={form.email}
                     theme={{ colors: { text: 'black', primary: 'orange', } }}
                     right={<TextInput.Icon icon={"email-outline"} size={20} color={"#FDD130"} />}
                 />
+                {errors.email && <Text style={styles.error}>{errors.email}</Text>}
                 <TextInput style={{ width: "100%", backgroundColor: "transparent", color: "white" }}
                     label={"Password"}
                     textColor='white'
+                    value={form.password}
+                    onChangeText={(text) => setForm({ ...form, password: text })}
                     theme={{ colors: { text: 'white', primary: 'orange', } }}
                     right={<TextInput.Icon icon={"lock-outline"} size={20} color={"#FDD130"} />}
                     secureTextEntry
                 />
+                {errors.password && <Text style={styles.error}>{errors.password}</Text>}
                 <TextInput style={{ width: "100%", backgroundColor: "transparent" }}
                     label={"Confirm password"}
                     textColor='white'
+                    value={form.password2}
+                    onChangeText={(text) => setForm({ ...form, password2: text })}
                     theme={{ colors: { text: 'black', primary: 'orange', } }}
                     right={<TextInput.Icon icon={"lock-outline"} size={20} color={"#FDD130"} />}
                     secureTextEntry
                 />
+                {errors.password2 && <Text style={styles.error}>{errors.password2}</Text>}
             </View>
 
             <View style={{ width: "90%", alignSelf: "center" }}>
-                <Pressable onPress={()=>navigation.navigate("Login")} style={{ width: "100%", backgroundColor: "#FDD130", margin: 5, paddingVertical: 6, borderRadius: 4, alignSelf: "center" }}>
+                <Pressable onPress={()=>{
+                        handleSubmit()
+                }} style={{ width: "100%", backgroundColor: "#FDD130", margin: 5, paddingVertical: 6, borderRadius: 4, alignSelf: "center" }}>
                     <Text style={{ fontSize: 16, fontWeight: "300", padding: 4, alignSelf: "center" }}>Sign up</Text>
                 </Pressable>
                 
@@ -80,3 +160,9 @@ export default function Register({navigation}) {
 
     )
 }
+const styles = StyleSheet.create({
+    error: {
+        color: 'red',
+        marginBottom: 20,
+      },
+})

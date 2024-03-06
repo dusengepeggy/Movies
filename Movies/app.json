@@ -4,12 +4,14 @@
     "slug": "Movies",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/pics/muvi.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/pics/muvi.png",
+      "resizeMode": "center",
+      "backgroundColor": "#1F2123",
+      "width":250,
+      "height":100
     },
     "assetBundlePatterns": [
       "**/*"
@@ -19,12 +21,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/pics/muvi.png",
+        "backgroundColor": "#1F2123"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/pics/muvi.png"
     }
   }
 }
