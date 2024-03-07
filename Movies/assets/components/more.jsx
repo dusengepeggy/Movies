@@ -42,7 +42,7 @@ export default More = ({ route, navigation }) => {
     return (
         <View style={{ backgroundColor: "#1F2123", flex: 1 }}>
             <View style={{ paddingTop: 20, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                <MaterialCommunityIcons style={{ margin: 10 }} onPress={() => navigation.navigate("Home")} name='arrow-left' size={25} color={"#FDD130"} />
+                <MaterialCommunityIcons style={{ margin: 10 }} onPress={() => navigation.goBack()} name='arrow-left' size={25} color={"#FDD130"} />
                 <Text style={{ color: "white", fontWeight: "bold", fontSize: 22 }}>{genre.name}</Text>
             </View>
 

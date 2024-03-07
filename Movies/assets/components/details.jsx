@@ -70,7 +70,7 @@ export default function Detail({ navigation }) {
                 {
                     isPlaying ? (
                         <View style={{ paddingTop: 20 }}>
-                            <MaterialCommunityIcons style={{ margin: 10 }} onPress={() => navigation.navigate("Home")} name='arrow-left' size={25} color={"#FDD130"} />
+                            <MaterialCommunityIcons style={{ margin: 10 }} onPress={() => navigation.goBack()} name='arrow-left' size={25} color={"#FDD130"} />
                             <YoutubePlayer
                                 height={200}
                                 style={{ position: 'absolute  ' }}
@@ -80,7 +80,7 @@ export default function Detail({ navigation }) {
                         </View>
                     ) : (
                         <ImageBackground resizeMode='stretch' style={{ width: "100%", paddingTop: 20, height: 400 }} source={{ uri: `https://image.tmdb.org/t/p/w500${details.poster_path}` }}>
-                            <MaterialCommunityIcons onPress={() => navigation.navigate("Home")} name='arrow-left' size={25} color={"#FDD130"} />
+                            <MaterialCommunityIcons onPress={() => navigation.goBack()} name='arrow-left' size={25} color={"#FDD130"} />
                         </ImageBackground>)
                 }
 

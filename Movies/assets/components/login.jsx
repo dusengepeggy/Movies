@@ -2,17 +2,22 @@ import { StyleSheet, Text, Image, Pressable, Dimensions,ActivityIndicator, View,
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
 import { TextInput } from "react-native-paper"
 import { useState ,useEffect} from 'react';
+import FlashMessage,{showMessage} from "react-native-flash-message";
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 var logo = require("../pics/muvi.png")
 var width=Dimensions.get("screen").width;
 var height=Dimensions.get("screen").height;
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { AUTH } from '../../firebaseConfig';
+
 export default function Login({navigation}) {
     const [form, setForm] = useState({
         email: '',
         password: '',
        
       });
+    const [security,setSecurity]=useState(true)
 
   
     
@@ -34,10 +39,7 @@ export default function Login({navigation}) {
         if (!form.password) {
           isValid = false;
           errors.password = 'Password is required';
-        } else if (form.password.length < 8) {
-          isValid = false;
-          errors.password = 'Password must be at least 8 characters';
-        }
+        } 
       
         setErrors(errors);
         return isValid;
@@ -51,25 +53,40 @@ export default function Login({navigation}) {
             email:email,
             password:password
           }
+          try {
+           const response =  await signInWithEmailAndPassword(AUTH,email,password);
+           setTimeout(()=>{ navigation.navigate('Home')},3000) 
+            setForm({
+              email: '',
+              password: '',
+            })
+          } catch (error) {
+            console.log(error);
+            showMessage({
+              message: "Error",
+              description: "description",
+              type:'danger',
+            })
+          }
+            
+          }
 
+          // finally{
+          //   setTimeout(()=>{ navigation.navigate('Home')},3000)
+          // }
 
-          navigation.navigate('Home')
-          setForm({
-            email: '',
-            password: '',
-          
-
-          })
 
           // Proceed with form submission (e.g., API call)
         }
-      };
     return (
         <View style={{ height: "100%", width: "100vh", backgroundColor: "#1F2123" }}>
+          
+           <FlashMessage position="top" />
             <View style={{ marginTop: 50, display: "flex", flexDirection: 'row', }}>
                 <MaterialCommunityIcons onPress={()=>navigation.navigate("Register")} name='arrow-left' style={{ marginHorizontal: 20 }} size={23} color={"#FDD130"} />
                 <Text style={{ fontSize: 20, fontWeight: "600", color: "white" }}>Login</Text>
             </View>
+            <ScrollView>
             <View style={{ width: "100%" }} >
                 <Image source={logo} style={{ width: 100, height: 30, alignSelf: "center", margin: 40 }} />
                 <Text style={{ color: "white", fontWeight: "300", width: "90%", fontSize: 18, textAlign: "center", alignSelf: "center" }}>Log in to enjoy many benefits and we won't let you go! </Text>
@@ -90,8 +107,8 @@ export default function Login({navigation}) {
                     value={form.password}
                     textColor='white'
                     theme={{ colors: { text: 'white', primary: 'orange', } }}
-                    right={<TextInput.Icon icon={"lock-outline"} size={20} color={"#FDD130"} />}
-                    secureTextEntry
+                    right={<TextInput.Icon onPress={()=>setSecurity(!security)} icon={security? "eye-outline":"eye-off-outline"} size={20} color={"#FDD130"} />}
+                    secureTextEntry={security}
                 />
                 {errors.password && <Text style={styles.error}>{errors.password}</Text>}
 
@@ -132,6 +149,7 @@ export default function Login({navigation}) {
                     <Pressable onPress={()=>navigation.navigate("Register")}  style={{ display: "flex", justifyContent: "center", }}><Text style={{ color: "#FDD130" }}>Sign in</Text></Pressable>
 
             </View>
+            </ScrollView>
         </View>
 
     )
