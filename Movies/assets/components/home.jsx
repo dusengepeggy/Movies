@@ -9,8 +9,11 @@ import Menu2 from './home/menu2';
 import Menu1 from './home/menu1';
 import Card2 from "./home/movieCard"
 import Card3 from './home/verticalCard';
-import { useState ,useEffect} from 'react';
+import { useState ,useEffect, useContext} from 'react';
+import { DarkMode } from '../../utils/darkmodeContext';
+
 export default function Home({ navigation }) {
+    const {changeMode ,darkMode}=useContext(DarkMode)
     const [Data, setData] = useState([]);
     const [Data1, setData1] = useState([])
     var [Data2, setData2] = useState([])
@@ -44,33 +47,23 @@ export default function Home({ navigation }) {
 
     useEffect(()=>{
         handleFetch()
+        
+
     },[])
 
     
 
     return (
 
-        <View style={{ flex: 1, backgroundColor: "#26282C", alignItems: "center" }}>
+        <View style={{ flex: 1, backgroundColor:darkMode? "#26282C":"whitesmoke", alignItems: "center" }}>
 
-            <View style={{ width: "100%", backgroundColor: "#1F2123", }}>
-                <View style={{ display: "flex", paddingTop: 30, paddingHorizontal: 20, flexDirection: "row", justifyContent: "space-between" }}>
-                    {/* <View style={{height:10,width:"100%"}}></View> */}
-                    <Image source={logo} ></Image>
-                    <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }} >
-                        <MaterialCommunityIcons name='bell-outline' size={25} color={"white"} />
-                        <View style={{ width: 20 }}></View>
-                        <MaterialCommunityIcons name='bookmark-outline' size={25} color={"white"} />
-                    </View>
 
-                </View>
-                <Menu1 navigation={navigation} />
-            </View>
 
-            <View style={{ backgroundColor: "#26282C", width: "90%" }}>
-                {/* <Menu2 /> */}
-                <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 200, flexGrow: 1, justifyContent: 'space-between', backgroundColor: "#26282C" }} >
+            <View style={{ backgroundColor:darkMode? "#26282C":'whitesmoke', width: "90%" }}>
+                <Menu2  navigation={navigation}/>
+                <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 200, flexGrow: 1, justifyContent: 'space-between', backgroundColor:darkMode? "#26282C":"whitesmoke" }} >
                     <View style={{ display: "flex", width: "100%", flexDirection: "row", justifyContent: "space-between", paddingVertical: 10,alignItems:'center' }}>
-                        <Text style={{ color: "white", fontSize: 20 }}>New release</Text>
+                        <Text style={{ color:darkMode? "white":"black", fontSize: 20 }}>New release</Text>
                         <Text style={{ color: "gray" }}>View more</Text>
                     </View>
 
@@ -94,7 +87,7 @@ export default function Home({ navigation }) {
                     </ScrollView>
                     <View style={{ height: 20 }}></View>
                     <View style={{ display: "flex", width: "100%", flexDirection: "row", justifyContent: "space-between", paddingVertical: 10 ,alignItems:'center'}}>
-                        <Text style={{ color: "white", fontSize: 20 }}>Popular</Text>
+                        <Text style={{ color: darkMode?"white":'black ', fontSize: 20 }}>Popular</Text>
                         <Text style={{ color: "gray" }}>View more</Text>
                     </View>
 

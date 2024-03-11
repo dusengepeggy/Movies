@@ -22,15 +22,15 @@ export default function TopBar() {
     <>
       <StatusBar style="light" />
       <navigate.Navigator initialRouteName='GetStarted' >
-        <navigate.Screen name='Loading' component={Loading} options={{ headerShown: false }} />
-        <navigate.Screen name="Login" component={Login} options={{ headerShown: false }} />
-        <navigate.Screen name="Register" component={Register} options={{ headerShown: false }} />
-        <navigate.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
-        <navigate.Screen name="Home" component={NavBar} options={{ headerShown: false }} />
-        <navigate.Screen name="GetStarted" component={GetStarted} options={{ headerShown: false }} />
-        <navigate.Screen name="Detail" component={Detail} options={{headerShown:false}}/>
-        <navigate.Screen name="More" component={More} options={{headerShown:false}}/>
-        <navigate.Screen name="Menu1" component={Menu1} options={{headerShown:false}}/>
+        <navigate.Screen name='Loading' component={Loading} options={{ headerShown: false,presentation:"card" }} />
+        <navigate.Screen name="Login" component={Login} options={{ headerShown: false,presentation:"card" }} />
+        <navigate.Screen name="Register" component={Register} options={{ headerShown: false,presentation:"card" }} />
+        <navigate.Screen name="Welcome" component={Welcome} options={{ headerShown: false,presentation:"card" }} />
+        <navigate.Screen name="Home" component={NavBar} options={{ headerShown: false,presentation:"card" }} />
+        <navigate.Screen name="GetStarted" component={GetStarted} options={{ headerShown: false,presentation:"card" }} />
+        <navigate.Screen name="Detail" component={Detail} options={{headerShown:false,presentation:"card"}}/>
+        <navigate.Screen name="More" component={More} options={{headerShown:false,presentation:"card"}}/>
+        <navigate.Screen name="Menu1" component={Menu1} options={{headerShown:false,presentation:"card"}}/>
       </navigate.Navigator>
 
 

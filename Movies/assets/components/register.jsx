@@ -9,10 +9,12 @@ import { AUTH } from '../../firebaseConfig'
 var logo = require("../pics/muvi.png")
 var width = Dimensions.get("screen");
 var height = Dimensions.get("screen");
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useContext } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { DarkMode } from '../../utils/darkmodeContext';
 
 export default function Register({ navigation }) {
+  const {changeMode ,darkMode}=useContext(DarkMode)
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -103,23 +105,23 @@ export default function Register({ navigation }) {
 
 
   return (
-    <View style={{ height: "100%", width: "100%", backgroundColor: "#1F2123" }}>
+    <View style={{ height: "100%", width: "100%", backgroundColor:darkMode? "#1F2123":"whitesmoke" }}>
       
         <FlashMessage position="top" />
         <View style={{ marginTop: 40, display: "flex", flexDirection: 'row', }}>
           <MaterialCommunityIcons onPress={() => navigation.navigate("Welcome")} name='arrow-left' style={{ marginHorizontal: 20 }} size={23} color={"#FDD130"} />
-          <Text style={{ fontSize: 20, fontWeight: "600", color: "white" }}>Register</Text>
+          <Text style={{ fontSize: 20, fontWeight: "600", color:darkMode? "white":"black" }}>Register</Text>
         </View>
         <ScrollView>
         <View style={{ width: "100%" }} >
           <Image source={logo} style={{ width: 100, height: 30, alignSelf: "center", margin: 20 }} />
-          <Text style={{ color: "white", fontWeight: "200", width: "90%", fontSize: 15, textAlign: "center", alignSelf: "center" }}>Sign up to discover all our movies and enjoy our features</Text>
+          <Text style={{ color:darkMode?"white":"black", fontWeight: "200", width: "90%", fontSize: 15, textAlign: "center", alignSelf: "center" }}>Sign up to discover all our movies and enjoy our features</Text>
         </View>
         <View style={{ width: "90%", display: 'flex', marginVertical: 20, alignItems: "center", alignSelf: "center" }}>
           <TextInput style={{ width: "100%", backgroundColor: "transparent" }}
             label={"Email address"}
             onChangeText={(text) => setForm({ ...form, email: text })}
-            textColor='white'
+            textColor={darkMode?'white':"black"}
             keyboardType='email-address'
             value={form.email}
             theme={{ colors: { text: 'black', primary: 'orange', } }}
@@ -128,7 +130,7 @@ export default function Register({ navigation }) {
           {errors.email && <Text style={styles.error}>{errors.email}</Text>}
           <TextInput style={{ width: "100%", backgroundColor: "transparent", color: "white" }}
             label={"Password"}
-            textColor='white'
+            textColor={darkMode?"white":"black"}
             value={form.password}
             onChangeText={(text) => setForm({ ...form, password: text })}
             theme={{ colors: { text: 'white', primary: 'orange', } }}
@@ -138,7 +140,7 @@ export default function Register({ navigation }) {
           {errors.password && <Text style={styles.error}>{errors.password}</Text>}
           <TextInput style={{ width: "100%", backgroundColor: "transparent" }}
             label={"Confirm password"}
-            textColor='white'
+            textColor={darkMode?"white":"black"}
             value={form.password2}
             onChangeText={(text) => setForm({ ...form, password2: text })}
             theme={{ colors: { text: 'black', primary: 'orange', } }}
@@ -156,13 +158,13 @@ export default function Register({ navigation }) {
           </Pressable>
 
           <Text style={{ textAlign: "center", alignSelf: "center", fontSize: 13, marginVertical: 8 }}>
-            <Text style={{ color: "white" }}>By signing up ,I accept the </Text>
+            <Text style={{ color:darkMode?"white":"black"}}>By signing up ,I accept the </Text>
             <Text style={{ color: "#FDD130" }}>Terms of use</Text>
-            <Text style={{ color: "white" }}> and </Text>
+            <Text style={{ color: darkMode?"white":"black" }}> and </Text>
             <Text style={{ color: "#FDD130" }}>privacy policy</Text>
           </Text>
 
-          <Text style={{ textAlign: "center", alignSelf: "center", color: "white", marginVertical: 8 }}>Or Sign up with  </Text>
+          <Text style={{ textAlign: "center", alignSelf: "center", color:darkMode?"white":"black", marginVertical: 8 }}>Or Sign up with  </Text>
 
           <Pressable style={{ width: "100%", backgroundColor: "black", margin: 5, paddingVertical: 6, borderRadius: 4, alignSelf: "center" }}>
 
@@ -182,7 +184,7 @@ export default function Register({ navigation }) {
           </Pressable>
           <View style={{ width: "100%", height: 20 }}></View>
           <View style={{ display: "flex", flexDirection: "row", alignSelf: "center" }}>
-            <Text style={{ color: "white" }}>Already have an account ? </Text>
+            <Text style={{ color: darkMode?"white":"black" }}>Already have an account ? </Text>
             <Pressable onPress={() => navigation.navigate("Login")} style={{ display: "flex", justifyContent: "center", }}><Text style={{ color: "#FDD130" }}>Log in</Text></Pressable>
 
           </View>

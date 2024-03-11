@@ -2,12 +2,13 @@ import { useRoute } from '@react-navigation/native';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
 import YoutubePlayer from "react-native-youtube-iframe";
 import { StyleSheet, Text, Image, ActivityIndicator, Pressable, View, SafeAreaView, ScrollView, ImageBackground, TouchableOpacity } from 'react-native';
-
-import { useEffect, useState } from 'react';
+import { DarkMode } from '../../utils/darkmodeContext';
+import { useContext, useEffect, useState } from 'react';
 // const images = require("../pics/muvi.png");
 const welcome = require("../pics/getstarted.png");
 import Card2 from './home/movieCard'
 export default function Detail({ navigation }) {
+    const {darkMode}=useContext(DarkMode)
     const [video, setvideo] = useState([])
     const result = useRoute();
     const [details, setDetails] = useState({});
@@ -62,7 +63,7 @@ export default function Detail({ navigation }) {
 
     return (
 
-        <View style={{ backgroundColor: "#1F2123", flex: 1 }}>
+        <View style={{ backgroundColor:darkMode? "#1F2123":"white", flex: 1 }}>
 
 
 
@@ -89,8 +90,8 @@ export default function Detail({ navigation }) {
 
                 <View style={{ width: "90%", alignSelf: 'center', marginTop: 20 }}>
                     <View>
-                        <Text style={{ color: "white", marginBottom: 15, fontWeight: "600", fontSize: 20 }}>{details.title}</Text>
-                        <Text style={{ color: "lightgray", fontWeight: 300, marginBottom: 10 }}>{details.overview}</Text>
+                        <Text style={{ color:darkMode? "white":"black", marginBottom: 15, fontWeight: "600", fontSize: 20 }}>{details.title}</Text>
+                        <Text style={{ color:darkMode? "lightgray":"gray", fontWeight: 300, marginBottom: 10 }}>{details.overview}</Text>
                         <View style={{ display: 'flex', flexDirection: 'row', gap: 20 }}>
                             <TouchableOpacity onPress={() => setIsPlaying(true)} style={{ width: "45%", backgroundColor: "#FDD130", padding: 15, borderRadius: 4, alignSelf: "center" }}><Text>Play</Text></TouchableOpacity>
                             <TouchableOpacity style={{ width: "45%", backgroundColor: "transparent", padding: 15, borderRadius: 4, alignSelf: "center", borderWidth: 1, borderColor: 'grey' }}><Text style={{ color: '#FDD130' }}>Add to list</Text></TouchableOpacity>
@@ -99,7 +100,7 @@ export default function Detail({ navigation }) {
 
                     {/* <Video source={{ uri: `https://www.youtube.com/watch?v=${video.key}` }} controls={true} resizeMode="contain" style={{ width: 500, height: 600 }} /> */}
                     <View style={{ display: "flex", width: "100%", flexDirection: "row", justifyContent: "space-between", paddingVertical: 10 ,alignItems:'center'}}>
-                        <Text style={{ color: "white", fontSize: 20 }}>You may also like</Text>
+                        <Text style={{ color: darkMode? "white":"black", fontSize: 20 }}>You may also like</Text>
                         <Text style={{ color: "gray" }}>View more</Text>
                     </View>
 

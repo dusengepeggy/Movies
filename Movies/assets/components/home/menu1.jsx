@@ -1,14 +1,15 @@
-import { useState,useEffect } from 'react';
+import { useState,useEffect, useContext } from 'react';
 import { StyleSheet, SafeAreaView, Text, View, Image,Button, TouchableOpacity,ScrollView } from 'react-native';
-
+import { DarkMode } from '../../../utils/darkmodeContext';
 function Card ({name}){
+    var {darkMode}=useContext(DarkMode)
     return(
         <View 
             // title={`${name}`}
             style={{marginHorizontal:15,marginVertical:10,padding:8 ,}}
             
         >
-        <Text  style={{color:'lightgray',alignSelf:"center",}}>{name}</Text>    
+        <Text  style={{color:darkMode?'lightgray':"gray",alignSelf:"center",}}>{name}</Text>    
         
         </View>
     )

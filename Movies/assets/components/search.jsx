@@ -3,15 +3,15 @@ import { StyleSheet, Text, Image, ActivityIndicator, Pressable, View, SafeAreaVi
 import { TextInput } from 'react-native-paper';
 const images = require("../pics/muvi.png");
 const search = require("../pics/searchpic.png");
-//  
+import { DarkMode } from '../../utils/darkmodeContext';
 
 import menu1 from './home/menu1';
 import Menu1 from './home/menu1';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 var width = Dimensions.get("screen").width
 var height = Dimensions.get("screen").height
 export default function Search({ navigation }) {
-
+    var {darkMode}=useContext(DarkMode)
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     var [genreList, setGenreList] = useState([]);
@@ -53,13 +53,13 @@ export default function Search({ navigation }) {
     }
 
     return (
-        <View style={{ backgroundColor: "#26282C", flex: 1, width: width, height: height }}>
-            <View style={{ backgroundColor: "#1F2123" }}>
+        <View style={{ backgroundColor:darkMode? "#26282C":"whitesmoke", flex: 1, width: width, height: height }}>
+            <View style={{ backgroundColor:darkMode? "#1F2123":"white" }}>
                 <TextInput
                     style={{ width: "90%", alignSelf: "center", backgroundColor: "transparent", marginTop: 20 }}
                     label={"Enter movie name"}
                     underlineStyle
-                    textColor='white'
+                    textColor={darkMode?'white':"BLACK"}
                     theme={{ colors: { text: 'white', primary: 'orange', } }}
                     right={<TextInput.Icon icon={"magnify"} size={25} color={"#FDD130"} />}
 
@@ -69,11 +69,11 @@ export default function Search({ navigation }) {
                 <Menu1 navigation={navigation} />
             </View>
             {!isSearchInitiated ? (
-                <View style={{ backgroundColor: "#26282C", display: "flex", alignItems: "center", width: "100%", height: "65%", justifyContent: "center" }}>
+                <View style={{ backgroundColor: darkMode? "#26282C":"whitesmoke", display: "flex", alignItems: "center", width: "100%", height: "65%", justifyContent: "center" }}>
 
                     <Image source={search} style={{ alignSelf: "center", width: 150, height: 130, marginVertical: 50 }} />
-                    <Text style={{ color: "white", fontSize: 25, marginVertical: 10, fontWeight: "600", width: "60%", textAlign: "center" }}>Find your movie</Text>
-                    <Text style={{ fontWeight: "300", color: "lightgray", textAlign: "center", width: "70%" }}>Search movies,series,originals as you want</Text>
+                    <Text style={{ color: darkMode?"white":"black", fontSize: 25, marginVertical: 10, fontWeight: "600", width: "60%", textAlign: "center" }}>Find your movie</Text>
+                    <Text style={{ fontWeight: "300", color: darkMode?"lightgray":"gray", textAlign: "center", width: "70%" }}>Search movies,series,originals as you want</Text>
 
                 </View>
             ) : (

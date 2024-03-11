@@ -15,7 +15,7 @@ import Profile from './assets/components/profile';
 import TopBar from './assets/components/router/stackNavigation';
 import { NavigationContainer } from "@react-navigation/native"
 import NavBar from './assets/components/router/bottomNavigation';
-
+import { DarkModeProvider } from './utils/darkmodeContext';
 var Tab = createBottomTabNavigator()
 export default function App() {
   return (
@@ -38,9 +38,11 @@ export default function App() {
     
    {/* <TopBar/>
    <NavBar/> */}
+   <DarkModeProvider>
    <NavigationContainer>
    <TopBar/>
-    </NavigationContainer>
+  </NavigationContainer>
+  </DarkModeProvider>
    </>
 
   );

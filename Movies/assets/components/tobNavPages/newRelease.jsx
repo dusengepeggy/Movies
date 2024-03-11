@@ -2,12 +2,10 @@ import { useRoute } from '@react-navigation/native';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
 import YoutubePlayer from "react-native-youtube-iframe";
 import { StyleSheet, Text, Image, ActivityIndicator, Pressable, View, SafeAreaView, ScrollView, ImageBackground, TouchableOpacity, FlatList } from 'react-native';
-
+import { DarkMode } from '../../../utils/darkmodeContext';
 import { useContext, useEffect, useState } from 'react';
-import { DarkMode } from '../../utils/darkmodeContext';
 
-export default More = ({ route, navigation }) => {
-    const {darkMode}=useContext(DarkMode)
+export default NewRelease = ({ route, navigation }) => {
     const [ofGenre, setOfGenre] = useState([])
     var [genreList, setGenreList] = useState([]);
     var genre = route.params;
@@ -23,7 +21,7 @@ export default More = ({ route, navigation }) => {
 
     useEffect(() => {
         const handleGenre = () => {
-            fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=${genre.id}&api_key=33c21faa847d1898c3509dfd1527638f&language=en-US&page=1`)
+            fetch(`https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1`,options)
                 .then(response => response.json())
                 .then(response => {
                     setOfGenre(response.results)
@@ -40,12 +38,12 @@ export default More = ({ route, navigation }) => {
     }, [])
 
     console.log(ofGenre)
-
+    var {darkMode}=useContext(DarkMode)
     return (
-        <View style={{ backgroundColor:darkMode? "#1F2123":"whitesmoke", flex: 1 }}>
-            <View style={{ paddingTop: 20, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                <MaterialCommunityIcons style={{ margin: 10 }} onPress={() => navigation.goBack()} name='arrow-left' size={25} color={"#FDD130"} />
-                <Text style={{ color:darkMode? "white":"black", fontWeight: "bold", fontSize: 22 }}>{genre.name}</Text>
+        <View style={{ backgroundColor: darkMode? "#1F2123":"whitesmoke", flex: 1 }}>
+            <View style={{ padding: 20, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                
+                <Text style={{ color: darkMode? "white":"black", fontWeight: "bold", fontSize: 22 }}>New release</Text>
             </View>
 
             <FlatList
@@ -68,7 +66,7 @@ export default More = ({ route, navigation }) => {
                                                 return (
 
 
-                                                    <Text key={index} style={{ marginRight: 10, color:darkMode? "white":"orange", fontSize: 14 }}>{genre.name}</Text>
+                                                    <Text key={index} style={{ marginRight: 10, color: darkMode? "white":"orange", fontSize: 14 }}>{genre.name}</Text>
 
                                                 )
 
